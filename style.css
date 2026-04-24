@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 18px;
+    color: #222;
+    background: linear-gradient(90deg, #FFFFFF 60%, #FAFAFA 60%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.main-layout__left {
+    flex: 0 0 60%;
+    /* Строго 60% ширины, не растет и не сужается */
+    padding-left: 380px;
+    /* Твой отступ из макета */
+}
+
+.main-layout {
+    display: flex;
+}
+
+.main-layout__right {
+    flex: 0 0 40%;
+    /* Строго 40% ширины */
+    padding-left: 40px;
+    /* Отступ внутри серой зоны, чтобы текст не лип к линии */
+}
+
+.header {
+    padding-top: 160px;
+    padding-bottom: 30px;
+}
+
+.header__container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header__img-wrapper {
+    background-color: #FBED10;
+    padding: 10px 12px 5px 12px;
+    border-radius: 9px;
+}
+
+.header__title {
+    font-size: 36px;
+}
+
+.main__container {
+    padding-top: 60px;
+}
+
+.calc__row {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+    align-items: flex-end;
+    /* Выравнивает кнопки по нижней линии селекта */
+}
+
+.calc__field {
+    display: flex;
+    flex-direction: column;
+}
+
+.calc__label {
+    font-weight: 500;
+    color: #999;
+    padding-bottom: 10px;
+}
+
+.calc__select {
+    min-width: 260px;
+    padding: 18px 60px 18px 20px;
+    border: 2px solid #EEEEEE;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    font-weight: 400;
+
+    appearance: none;
+    /* Скрываем стандартную стрелку */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23222222' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+
+    /* ВОТ ЗДЕСЬ регулируем положение: 20px от правого края, по центру вертикально */
+    background-position: right 20px center;
+}
+
+.calc__currencies {
+    display: flex;
+    gap: 30px;
+    padding-bottom: 18px;
+}
+
+.currency-btn {
+    font-weight: 700;
+    font-size: 18px;
+    color: #222;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.active {
+    color: #fbed10;
+    position: relative;
+}
+
+.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #FBED10;
+}
+
+.calc__row--range {}
+
+.calc__field {}
+
+.calc__label {}
+
+.range-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.calc__slider {
+    -webkit-appearance: none;
+    /* Убираем стандартный серый вид */
+    min-width: 460px;
+    height: 10px;
+    background: #EEEEEE;
+    /* Цвет серой дорожки */
+    border-radius: 30px;
+    outline: none;
+
+}
+
+/* 3. Стилизуем "бегунок" (тот прямоугольник, за который тянем) */
+.calc__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    /* Ширина белого прямоугольника */
+    height: 38px;
+    /* Высота */
+    background: #FFFFFF;
+    border: 1px solid #EEEEEE;
+    border-radius: 3px;
+    /* Скругление */
+    cursor: pointer;
+
+}
+.yellow-slider {
+-webkit-appearance: none;
+    width: 100%;
+    height: 8px; /* Сделай высоту такую же, как у .calc__slider */
+    background-color: #EEEEEE; 
+    background-image: linear-gradient(#FBED10, #FBED10); /* Твой цвет из макета */
+    background-repeat: no-repeat; 
+    background-size: 0% 100%; 
+    border-radius: 30px;
+    outline: none;
+}
+
+
+.slider__wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.calc__steps {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.calc__steps span {
+    margin-top: 10px;
+    justify-content: space-between;
+    font-weight: 500;
+    color: #EEEEEE;
+}
+
+/* Число, которое выбрано (черное) */
+.calc__steps span.active-step {
+    color: #222222;
+    font-weight: 700;
+}
+
+.calc__input-block {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.calc__input-value {
+    max-width: 200px;
+    padding: 15px 88px 18px 20px;
+    border: 2px solid #EEEEEE;
+    border-radius: 8px;
+    font-weight: 500;
+    outline: none;
+}
+
+.calc__input-currency {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-weight: 500;
+    color: #999;
+    pointer-events: none;
+}
+
+.calc__percents {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #FAFAFA;
+    padding: 22px 20px;
+    border-radius: 15px;
+    min-width: 200px;
+}
+
+.calc__input-value, .calc__select, .calc__percents {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.02); /* Еле заметная тень для объема */
+    border: 2px solid #F6F6F6; /* Более светлая граница */
+}
+
+.calc__percent {
+    max-width: 160px;
+    font-weight: 500;
+    color: #999;
+}
+
+.calc__number {
+    font-size: 14px;
+    color: #999;
+}
+
+.calc__number strong {
+    font-weight: 700;
+    font-size: 24px;
+    color: #222;
+}
+
+.calc__input--date {
+    min-width: 260px;
+    position: relative;
+    -webkit-appearance: none;
+}
+
+/* Скрываем нативный значок календаря */
+.calc__input--date::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.calc__input--date {
+    background-image: url("images/calendar.svg");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    /* 20px от правого края */
+}
+
+.card__result {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем содержимое внутри */
+    gap: 40px;
+}
+
+.result__stats {
+    display: flex;
+    gap: 40px;
+
+}
+
+.stat-item {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    padding-bottom: 30px;
+}
+
+.stat-item__label {
+    color: #999;
+}
+
+.stat-item__value {
+    font-weight: 900;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.stat-item__box {}
+
+.stat-item__box--white {
+
+    background: #FFF;
+    width: 160px;
+    height: 100px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05); /* Мягкая тень */
+}
+
+.stat-item--main {}
+
+.stat-item__box--combined {
+    width: 160px;
+    height: 200px; /* Общая высота желтого + белого */
+    border-radius: 15px; /* Скругляем сразу ВСЁ */
+    overflow: hidden;    /* МАГИЯ: всё, что внутри, обрежется по углам родителя */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+    flex-direction: column-reverse; /* Разворачивает порядок: теперь первый элемент будет снизу */
+}
+
+.box-white {
+    flex: 1; /* Каждый занимает ровно половину высоты */
+}
+
+.box-yellow {
+    background: #FBED10;
+    transition: height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.box-white {
+    background: #FFF;
+}
+
+.result__details {
+    width: 100%; /* Занимает всю ширину контейнера */
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 30px;
+}
+
+.detail-row {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    color: #999;
+}
+
+.detail-divider {
+    border: none;
+    border-top: 2px solid #EEEEEE;
+    margin: 10px 0;
+}
+
+.detail-row--total strong {
+    font-weight: 900;
+    font-size: 24px;
+    color: #222;
+}
+
+.detail-row--total span {
+    max-width: 150px;
+}
+
+.btn-invest {
+    border-radius: 0px 50px 0px 50px;
+    border: none;
+    padding: 24px 66px;
+    background: #222223;
+    color: #FBED10;
+    font-weight: 900;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.btn-invest:hover {
+    background: #333;
+    transform: translateY(-2px); /* Эффект нажатия */
+}
+
+.btn-invest:active {
+    transform: translateY(0);
+}
